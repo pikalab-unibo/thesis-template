@@ -1,0 +1,132 @@
+\documentclass[12pt,a4paper,openright,twoside]{book}
+\usepackage[utf8]{inputenc}
+
+%\newcommand{\thesisLanguage}{italian} % decommentare in caso di tesi in italiano
+\newcommand{\thesislang}{english} % commentare in caso di tesi in italiano
+\usepackage{thesis-style}
+
+\begin{document}
+	
+\frontmatter
+
+\input{front.tex}
+
+\begin{abstract}	
+Max 2000 characters, strict.
+\end{abstract}
+
+\begin{dedication} % this is optional
+Optional. Max a few lines.
+\end{dedication}
+
+\begin{acknowledgements} % this is optional
+Optional. Max 1 page.
+\end{acknowledgements}
+
+%----------------------------------------------------------------------------------------
+\tableofcontents   
+\listoffigures     % (optional) comment if empty
+\lstlistoflistings % (optional) comment if empty
+%----------------------------------------------------------------------------------------
+
+% aumento interlinea
+\onehalfspacing\selectfont
+
+\mainmatter
+
+%----------------------------------------------------------------------------------------
+\chapter{\introductionname}
+\label{chap:introduction}
+%----------------------------------------------------------------------------------------
+
+Write introduction here.
+
+%
+\paragraph{Thesis Structure.} % Optional paragraph title
+%
+
+(This is optional an optional paragraph.)
+%
+Accordingly, the reminder of this thesis is structures as follows.
+%
+\Cref{chap:background} discusses (briefly describe the content of \cref{chap:background}).
+%
+Describe other chapters here in a similar way.
+%
+Finally, \Cref{chap:conclusions} concludes this thesis by summarising its main contribution.
+
+%----------------------------------------------------------------------------------------
+\chapter{State of the Art} % or Background
+\label{chap:background}
+%----------------------------------------------------------------------------------------
+
+Write background here.
+
+This section is likely to contain a lot of citations.
+%
+For instance in \cite{AnzengruberSocInfo2013} the authors propose a novel means for tackling with the problem of preventing bad things from happening.
+
+%----------------------------------------------------------------------------------------
+\chapter{Design} % possible chapter for Projects
+\label{chap:design}
+%----------------------------------------------------------------------------------------
+
+Write design here.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{figures/classes.pdf}
+	\caption{A class diagram created with PlantUML}
+	\label{fig:classes}
+\end{figure}
+
+You may want to reference images in your thesis.
+%
+In this case, you are encouraged to make them \emph{floating}, and reference them by means of labels.
+%
+For instance, in \Cref{fig:classes}, we describe a class diagram produced by means of \href{http://plantuml.com}{PlantUML}.
+
+%----------------------------------------------------------------------------------------
+\chapter{Implementation} % possible chapter for Projects
+\label{chap:implementation}
+%----------------------------------------------------------------------------------------
+
+Write implementation here.
+
+\lstinputlisting[
+	float,
+	language=Java,
+	caption={My very first program in Java},
+	label={lst:helloworld},
+]{listings/HelloWorld.java}
+
+You may need to reference listings in your thesis.
+%
+In this case, you are encouraged to make them \emph{floating}, and reference them by means of labels.
+%
+For instance, in \Cref{lst:helloworld}, we describe an hello world program in Java.
+
+%----------------------------------------------------------------------------------------
+\chapter{Validation} % possible chapter for Projects
+\label{chap:validation}
+%----------------------------------------------------------------------------------------
+
+Write implementation here
+
+%----------------------------------------------------------------------------------------
+\chapter{\conclusionsname}
+\label{chap:conclusions}
+%----------------------------------------------------------------------------------------
+
+Write conclusions here.
+
+
+%----------------------------------------------------------------------------------------
+% BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\nocite{*} % uncomment this to show all the reference in the .bib file
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
