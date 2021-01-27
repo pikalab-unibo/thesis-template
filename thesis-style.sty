@@ -12,8 +12,17 @@
 \usepackage[\thesislang]{cleveref}
 \usepackage{geometry}
 \usepackage{listings}
-
 \usepackage{ifthen}
+
+% \usepackage[disable]{todonotes} % decommentare prima della versione finale
+\usepackage{todonotes} % commentare prima della versione finale
+\newcommand{\gcsidenote}[1]{\todo[size=\tiny,color=green]{\textbf{GC:} #1}}
+\newcommand{\gcnote}[1]{\todo[size=\scriptsize,color=green,inline]{\textbf{Giovanni Ciatto:} #1}}
+\newcommand{\dpsidenote}[1]{\todo[size=\tiny,color=red]{\textbf{DP:} #1}}
+\newcommand{\dpnote}[1]{\todo[size=\scriptsize,color=red,inline]{\textbf{Danilo Pianini:} #1}}
+\newcommand{\rcsidenote}[1]{\todo[size=\tiny,color=cyan]{\textbf{RC:} #1}}
+\newcommand{\rcnote}[1]{\todo[size=\scriptsize,color=cyan,inline]{\textbf{Roberta Calegari:} #1}}
+
 \ifthenelse{\equal{italian}{\thesislang}}{
 	\renewcommand{\lstlistingname}{Listato}
 	\renewcommand{\lstlistlistingname}{Elenco dei listati}
