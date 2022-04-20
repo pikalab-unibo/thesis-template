@@ -1,0 +1,49 @@
+name: compile
+on:
+  push:
+    branches:
+      - main
+      - master
+env:
+  LATEX_ROOT: thesis-main
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
+      - name: Build latex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: ${{ env.LATEX_ROOT }}.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape
+          
+      - name: Get Version
+        id: get-version
+        run: echo "::set-output name=version::$(cat *.tex | python .github/scripts/compute-version.py)"
+
+      - name: Get Time
+        id: current-time
+        run: echo "::set-output name=time::$(date +'%Y-%m-%d-%H-%M')"
+        
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: '${{ steps.get-version.outputs.version }}+${{ steps.current-time.outputs.time }}'
+          
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./${{ env.LATEX_ROOT }}.pdf
+          asset_name: ${{ env.LATEX_ROOT }}-${{ steps.get-version.outputs.version }}+${{ steps.current-time.outputs.time }}.pdf
+          asset_content_type: application/pdf
